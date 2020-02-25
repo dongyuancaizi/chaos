@@ -1,0 +1,31 @@
+server:
+  port: 8080
+logging:
+  level:
+    com:
+      favorites: DEBUG
+    org:
+      hibernate: ERROR
+      springframework:
+        web: INFO
+  path: log
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+
+socketio:
+  allowCustomRequests: true
+  bossCount: 1
+  host: 0.0.0.0
+  maxFramePayloadLength: 1048576
+  maxHttpContentLength: 1048576
+  pingInterval: 25000
+  pingTimeout: 6000000
+  port: 9099
+  upgradeTimeout: 1000000
+  workCount: 100

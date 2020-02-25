@@ -1,0 +1,3 @@
+本项目为ribbon demo:ribbon{提供rpc能力}整合hystrix提供负载均衡
+整合
+    hystrix

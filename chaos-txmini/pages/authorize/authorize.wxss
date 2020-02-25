@@ -1,0 +1,144 @@
+/* pages/authorize/authorize.wxss */
+.authorize {
+    background-color: #fff;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    z-index: 2;
+}
+
+.authorize-body {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.author-img {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.author-img image {
+    width: 40px;
+    height: 40px;
+}
+
+.author-img_info {
+    margin-left: 13px;
+    font-size: 20px;
+}
+
+.author-content {
+    margin: 120px 0px 20px;
+    color: #000;
+    font-size: 20pt;
+}
+
+.author-btn {
+    font-size: 15px;
+}
+
+.author-btn1 {
+    color: #ffffff;
+    border-radius: 2px;
+    margin-top: 20px;
+    background-color: #07C160;
+}
+
+.author-btn2 {
+    background-color: #fff;
+    color: #ffc53d;
+    margin-top: 20px;
+}
+
+
+.weui_bottom {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #888;
+    justify-content: center;
+    z-index: 10;
+}
+
+.weui_bottom_r {
+    color: #576B95;
+}
+
+
+.weui_back {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+    z-index: 5;
+    opacity: 0.6;
+    background-color: #999;
+}
+
+.weui_xy_content {
+    position: fixed;
+    background-color: #fff;
+    width: 70%;
+    margin-left: 15%;
+    top: 20%;
+    border-radius: 6px;
+    z-index: 6;
+    height: 300px;
+}
+
+.weui_xy_content_close {
+    width: 25px;
+    height: 25px;
+    right: 15px;
+    top: 15px;
+    position: absolute;
+}
+
+.weui_xy_content_title {
+    margin: 10px 0px;
+    text-align: center;
+    font-size: 15px;
+    color: #333;
+}
+
+.weui_xy_content_content {
+    font-size: 14px;
+    color: #444;
+    position: absolute;
+    padding: 0px 10px;
+}
+
+
+.weui_phone_content {
+    position: fixed;
+    background-color: #fff;
+    width: 70%;
+    margin-left: 15%;
+    top: 30%;
+    border-radius: 10px;
+    z-index: 6;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.weui_phone_content image {
+    height: 60px;
+    width: 60px;
+}
+
+.info_btn {
+    background-color: #fd6b6c;
+    color: #fff;
+    width: 80px;
+    padding: 0;
+    font-size: 13px;
+    margin-top: 10px;
+    text-align: center;
+}

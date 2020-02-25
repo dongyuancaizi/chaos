@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/authorize/authorize",
+    "pages/web/web",
+    "pages/xy/xy",
+    "pages/citylist/citylist",
+    "pages/booklist/booklist",
+    "pages/docterlist/docterlist",
+    "pages/docterdetail/docterdetail",
+    "pages/order/order"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "矮芽-医生资质查询",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "矮芽获取您的位置用于显示最近的医生"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

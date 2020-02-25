@@ -1,0 +1,133 @@
+server:
+  port: 28088
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    root: INFO
+    com:
+      favorites: DEBUG
+    org:
+      hibernate: ERROR
+      springframework:
+      web: INFO
+spring:
+  application:
+    name: boot-demo-service
+  datasource:
+    url: jdbc:mysql://39.100.194.142:3306/chaos?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Sike2018Okya2020!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      filters: stat,wall
+      initial-size: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: -1
+      maxWait: 60000
+      min-idle: 5
+      minEvictableIdleTimeMillis: 300000
+      poolPreparedStatements: true
+      stat-view-servlet:
+        enabled: true
+        reset-enable: false
+        url-pattern: /druid/*
+        allow: 127.0.0.1,*
+      testOnBorrow: true
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      validationQuery: SELECT 1 FROM DUAL
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+        url-pattern: /*
+    type: com.alibaba.druid.pool.DruidDataSource
+  rabbitmq:
+    addresses: 39.100.194.142
+    username: admin
+    password: Sike2018Okya2020!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+  boot:
+    admin:
+      client:
+        url: 'http://39.100.194.142:8000'
+        username: "admin"
+        password: "Sike2018Okya2020!"
+        instance:
+          service-base-url: 'http://39.100.194.142:28083'
+          prefer-ip: true
+          metadata:
+            user.name: ${spring.security.user.name} #客户端元数据访问用户
+            user.password: ${spring.boot.admin.client.password} #客户端元数据访问密码
+  security:
+    user:
+      name: admin #客户端用户名
+      password: Sike2018Okya2020! # 客户端密码
+      roles: ACTUATOR_ADMIN #拥有角色，用于允许自身访问
+  dubbo:
+    registry:
+      address: zookeeper://39.100.194.142:2181
+    consumer:
+      check: false
+      timeout: 10000
+    application:
+      name: boot-demo-service
+    server: true
+    protocol:
+      name: dubbo
+      port: 28188
+    reference:
+      loadbalance: random #随机机制
+  redis:
+    database: 3
+    host: 39.100.194.142
+    password: Sike2018Okya2020!
+    jedis:
+      pool:
+        max-active: 200
+        maxIdle: 10
+        minIdle: 1
+    port: 6379
+    timeout: 2000
+management:
+  health:
+    mongo:
+      enabled: false
+    rabbit:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://39.100.194.142:19999/xxl-job-admin
+    executor:
+      ip: ''
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+      appname: xxl-job-executor-dev-qitianzhen
+      port: 39993
+zipkin:
+  compressionEnabled: true
+  connectTimeout: 6000
+  flushInterval: 1
+  readTimeout: 6000
+  serviceName: demo-service
+  url: http://39.100.194.142:9411
+

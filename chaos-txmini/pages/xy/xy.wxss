@@ -1,0 +1,9 @@
+/* pages/xy/xy.wxss */
+page{font: 14px/1 Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;}
+.weui{padding: 0px 10px;color: #333;line-height: 30px;}
+.weui_info_head{color: #333;}
+.weui_info_content{padding: 24px 0px;border-bottom: 1px #eee solid;}
+.weui_info_content_title{font-weight: bold;font-size: 15px;}
+.weui_info_content_one{margin-top: 10px;}
+.info_content_one_t{font-size: 15px;}
+.info_content_one_b{margin-top: 10px;}

@@ -1,0 +1,147 @@
+version: '3'
+services:
+  nacos:
+    container_name: c-nacos
+    image: nacos/nacos-server
+    restart: always
+    environment:
+      MODE: standalone
+    ports:
+      - 8848:8848
+    networks:
+      - cui-ci
+  nginx:
+    image: nginx:latest
+    container_name: c-nginx
+    volumes:
+      - ./nginx/www/:/usr/share/nginx/html
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+    ports:
+      - 80:80
+    restart: always
+    networks:
+      - cui-ci
+  redis:
+    image: redis:latest
+    container_name: c-redis
+    restart: always
+    command: redis-server --requirepass Sike2018Okya2020!
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/data:/data
+    networks:
+      - cui-ci
+  mysql:
+    container_name: c-mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: Sike2018Okya2020!
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d/
+    ports:
+      - 3306:3306
+    networks:
+      - cui-ci
+    restart: always
+  nexus3:
+    container_name: c-nexus3
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - ./nexus/data:/nexus-data
+    ports:
+      - 8081:8081
+      - 8082:8082
+      - 8083:8083
+      - 8084:8084
+      - 8085:8085
+    networks:
+      - cui-ci
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: c-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Sike2018Okya2020!
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - cui-ci
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  zookeeper:
+    image: zookeeper:latest
+    container_name: c-zookeeper
+    networks:
+      - cui-ci
+    ports:
+      - 2181:2181
+    volumes:
+      - ./zookeeper:/conf/
+    restart: always
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: c-zipkin
+    networks:
+      - cui-ci
+    ports:
+      - 9411:9411
+    restart: always
+  xxljob:
+    image: 39.100.194.142:8288/cui/xxljob:latest
+    container_name: c-xxljob
+    depends_on:
+      - mysql
+    volumes:
+      - ./xxljob/applogs:/data/applogs
+    ports:
+      - "19999:19999"
+    networks:
+      - cui-ci
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  dubbo-admin:
+    image: 39.100.194.142:8288/cui/dubbo-admin:latest
+    container_name: c-dubbo-admin
+    networks:
+      - cui-ci
+    links:
+      - zookeeper:zookeeper
+    depends_on:
+      - zookeeper
+    ports:
+      - 18888:18888
+    restart: always
+  chaos-admin:
+    image: 39.100.194.142:8288/cui/chaos-admin:latest
+    container_name: c-chaos-admin
+    networks:
+      - cui-ci
+    ports:
+      - 8000:8000
+    restart: always
+  chaos-code:
+    image: 39.100.194.142:8288/cui/code-generator:latest
+    container_name: c-chaos-code
+    networks:
+      - cui-ci
+    ports:
+      - 8080:8080
+    restart: always
+networks:
+  cui-ci:
+    driver: bridge

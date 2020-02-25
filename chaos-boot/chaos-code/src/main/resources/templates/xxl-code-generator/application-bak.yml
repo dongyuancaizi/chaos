@@ -1,0 +1,116 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+  boot:
+    admin:
+      client:
+        url: 'http://192.168.99.100:8000'
+        instance:
+          prefer-ip: true
+  datasource:
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      filters: stat,wall
+      initial-size: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: -1
+      maxWait: 60000
+      min-idle: 5
+      minEvictableIdleTimeMillis: 300000
+      poolPreparedStatements: true
+      stat-view-servlet:
+        allow: 192.168.99.100
+        deny: ''
+        enabled: true
+        login-password: admin
+        login-username: admin
+        reset-enable: false
+        url-pattern: /druid/*
+      testOnBorrow: true
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      validationQuery: SELECT 1 FROM DUAL
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+        url-pattern: /*
+      type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3306/user?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  redis:
+    jedis:
+      pool:
+        max-active: 200
+        maxIdle: 10
+        minIdle: 1
+      port: 6379
+      timeout: 2000
+    database: 0
+    host: 192.168.99.100
+    password: null
+  dubbo:
+    application:
+      name: user-service
+      server: true
+      protocol:
+        name: dubbo
+        port: 20880
+      consumer:
+        check: false
+      reference:
+        loadbalance: roundrobin #\u8F6E\u8BE2\u673A\u5236
+        #loadbalance: random #\u968F\u673A\u673A\u5236
+        #loadbalance: leastactive #\u6700\u5C11\u6D3B\u8DC3\u8C03\u7528\u6570\u673A\u5236
+    registry:
+      address: zookeeper://192.168.99.100:2181
+    consumer:
+      check: false
+  rabbitmq:
+    addresses: 192.168.99.100
+    username: admin
+    password: 123456
+mybatis-plus:
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    root: INFO
+    com:
+      favorites: DEBUG
+    org:
+      hibernate: ERROR
+      springframework:
+        web: INFO
+management:
+  health:
+    mongo:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://192.168.99.100:19999/xxl-job-admin
+    executor:
+      appname: xxl-job-executor-sample
+      ip: ''
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+      port: 9992
+zipkin:
+  compressionEnabled: true
+  connectTimeout: 6000
+  flushInterval: 1
+  readTimeout: 6000
+  serviceName: user-service
+  url: http://192.168.99.100:9411

@@ -1,0 +1,41 @@
+image: docker:19.03.1
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
+  MAVEN_CLI_OPTS: "-s ./../maven/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2"
+services:
+  - docker:19.03.1-dind
+cache:
+  key: maven-repository-cache
+  paths:
+    - .m2
+stages:
+  - package
+  - build
+maven-package:
+  before_script:
+    - echo "maven-package starting..."
+  image: maven:3.5-jdk-8-alpine
+  tags:
+    - maven
+  stage: package
+  script:
+    - cd qitianzhen-service
+    - mvn $MAVEN_CLI_OPTS $MAVEN_OPTS clean package  -Dmaven.test.skip=true
+    - echo "build success"
+  artifacts:
+    paths:
+      - qitianzhen-service/target/*.jar
+    expire_in: 1 day
+build-master:
+  tags:
+    - docker
+  stage: build
+  script:
+    - cd qitianzhen-service
+    - docker build -t  qitianzhen-service .
+    - docker tag qitianzhen-service 39.100.194.142:8288/okya/qitianzhen-service
+    - docker login  --username="admin" --password="Harbor12345" 39.100.194.142:8288
+    - docker push 39.100.194.142:8288/okya/qitianzhen-service
+  only:
+    - master

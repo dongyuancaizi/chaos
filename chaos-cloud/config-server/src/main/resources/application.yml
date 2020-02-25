@@ -1,0 +1,32 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8888
+spring:
+  application:
+    name: server-config
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          searchPaths: respo
+          uri: https://github.com/cjjlovecjj/SpringcloudConfig/
+          username: '632381896@qq.com'
+          password: 'cjj3219109114'
+          #uri: https://github.com/forezp/SpringcloudConfig/
+          #username: ''
+          #password: ''
+
+  rabbitmq:
+    host: www.moemoe.com
+    port: 5672
+    username: admin
+    password: 123456
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

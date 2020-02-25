@@ -1,0 +1,16 @@
+version: '3'
+services:
+  chaos-boot-demo:
+    image: 39.100.194.142:8288/okya/qitianzhen-service:latest
+    container_name: c-qitianzhen-service
+    environment:
+     # OKYA_HOST: 172.17.0.5 # tx 111.229.113.9
+      OKYA_HOST: 172.26.218.18
+    networks:
+      - cui-ci
+    ports:
+      - 28083:28083
+    restart: always
+networks:
+  cui-ci:
+    driver: bridge

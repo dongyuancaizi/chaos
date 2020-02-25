@@ -1,0 +1,23 @@
+/*弹窗*/
+.alert_window {
+    position: fixed;
+    bottom: 50px;
+    width: 90%;
+    margin-left: 5%;
+    z-index: 100;
+}
+
+.alert_back {
+    padding: 10px 0px;
+    background-color: #545454;
+    opacity: 0.8;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.weui_list_t_r_active {
+    background-color: #f2f2f2;
+}
+

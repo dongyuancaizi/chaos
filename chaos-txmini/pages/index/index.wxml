@@ -1,0 +1,31 @@
+<view class="weui">
+    <view class='weui_top'>
+        <image src='../../img/lg.png' class='weui_logo'></image>
+        <view class='weui_top_l' bindtap='goDocterlist'>
+            <view class='weui_top_l_info'>医生姓名/自锁讲师/隐适美讲师/RW</view>
+            <image src='../../img/search.png'></image>
+        </view>
+    </view>
+    <view class='weui_content'>
+        <block wx:for="{{list}}" wx:key="index">
+            <view class='weui_content_one' hover-class='content_one_hover'
+                  data-id="{{index}}" bindtap='goWeb'
+                  style='border:{{list.length==index+1?"none":""}}'>
+                {{item.title}}
+            </view>
+        </block>
+    </view>
+    <!---->
+</view>
+<view class='weui_bottom'>
+    <view class='weui_bottom_l' bindtap='goCity'>
+        <view class='weui_bottom_b'>按城市看</view>
+    </view>
+    <view class='weui_bottom_r' bindtap='goBooklist'>
+        <view class='weui_bottom_b'>我的预约</view>
+    </view>
+</view>
+<!--弹窗-->
+<view class='alert_window' hidden='{{alertHidden==true?false:true}}'>
+    <view class='alert_back'>{{alert}}</view>
+</view>

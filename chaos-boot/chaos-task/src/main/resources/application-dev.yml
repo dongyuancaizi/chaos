@@ -1,0 +1,24 @@
+server:
+  port: 8084
+spring:
+  redis:
+    database: 0
+    host: 47.111.6.183
+    password: null
+    port: 6379
+    timeout: 5000
+  dubbo:
+    application:
+      name: task-dubbo
+    protocol:
+      name: dubbo
+      port: 20880
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    consumer:
+      check: false
+      timeout: 5000
+    reference:
+      loadbalance: roundrobin #轮询机制
+      #loadbalance: random #随机机制
+      #loadbalance: leastactive #最少活跃调用数机制

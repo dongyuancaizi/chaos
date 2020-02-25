@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>NETTY SOCKET.IO DEMO</title>
+    <base>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
+
+</head>
+
+<body>
+<div id="console" class="well">
+    <button id="ww">传值</button>
+</div>
+<p id="classid" th:text="'用户教室：' + ${classid}" th:value="${classid}"/>
+<p id="userid" th:text="'用户名称：' + ${userid}" th:value="${userid}"/>
+<p id="role" th:text="'用户角色：' + ${role}" th:value="${role}"/>
+</body>
+<script type="text/javascript">
+    var userid = [[${userid}]];
+    var classid = [[${classid}]];
+    var role = [[${role}]];
+    var name = "test";
+    var socket;
+    connect();
+    document.getElementById('ww').onclick = function () {
+        //socket.emit('login', '用户名');
+        console.log("发送成功");
+    }
+
+    function connect() {
+        socket = io('http://119.23.57.4:9099', {
+            //socket = io('http://47.111.6.183:9099', {
+            //socket = io('http://127.0.0.1:9099', {
+            query: {
+                cid: classid,
+                uid: userid,
+                role: role,
+                name: name
+            }
+        });
+        socket.on('connect', function () {
+            console.log("连接成功");
+            // serverOutput('<span class="connect-msg">连接成功</span>');
+            //socket.emit('user',"test msg" );
+        });
+        socket.on('user', function (data) {
+            // output('<span class="username-msg">' + data + ' </span>');
+            console.log(data);
+        });
+        socket.on('update', function (data) {
+            // output('<span class="username-msg">' + data + ' </span>');
+            console.log(data);
+        });
+        socket.on('notice', function (data) {
+            // output('<span class="username-msg">' + data + ' </span>');
+            console.log(data);
+        });
+
+        socket.on('disconnect', function () {
+            console.log("断开连接");
+            // serverOutput('<span class="disconnect-msg">' + '已下线! </span>');
+        });
+
+        socket.on('global', function () {
+            console.log("获取房间信息");
+            // serverOutput('<span class="disconnect-msg">' + '已下线! </span>');
+        });
+
+    }
+
+</script>
+</html>

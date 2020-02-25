@@ -1,0 +1,55 @@
+server:
+  port: 8082
+mybatis-plus:
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    root: INFO
+    com:
+      favorites: DEBUG
+    org:
+      hibernate: ERROR
+      springframework:
+        web: INFO
+  path: /log/task
+spring:
+  application:
+    name: task-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  boot:
+    admin:
+      client:
+        url: 'http://127.0.0.1:8000'
+management:
+  health:
+    mongo:
+      enabled: false
+    rabbit:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://127.0.0.1:19999/xxl-job-admin
+    executor:
+      appname: xxl-job-executor-sample
+      ip: ''
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+      port: 9991
+zipkin:
+  compressionEnabled: true
+  connectTimeout: 6000
+  flushInterval: 1
+  readTimeout: 6000
+  serviceName: task-service
+  url: http://127.0.0.1:9411

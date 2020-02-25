@@ -1,0 +1,40 @@
+server:
+  port: 8084
+logging:
+  level:
+    root: INFO
+    com:
+      favorites: DEBUG
+    org:
+      hibernate: ERROR
+      springframework:
+        web: INFO
+    ooh.chaos: debug
+    com.only: debug
+  path: /log/task
+spring:
+  # profiles:
+  #  active: dev
+  dubbo:
+    application:
+      id: task-dubbo
+      name: task-dubbo
+    protocol:
+      name: dubbo
+      port: 20884
+    registry:
+      address: zookeeper://www.weiyi.com:2181
+    consumer:
+      version: 2.0.0
+      check: false
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://192.168.18.211:8890/job-admin
+    executor:
+      appname: xxl-job-executor
+      ip: ''
+      logpath: /log/task/jobhandler
+      logretentiondays: -1
+      port: 9999

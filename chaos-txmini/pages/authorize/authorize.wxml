@@ -1,0 +1,44 @@
+<!--pages/authorize/authorize.wxml-->
+<view class='authorize'>
+    <view class='authorize-body'>
+        <view class='author-img'>
+            <image src='../../img/53339415303222670.jpg'></image>
+            <view class='author-img_info'>矮芽</view>
+        </view>
+        <view class='author-content'>
+            <block wx:if="{{istrue==1?true:false}}">
+                专业简洁的正畸医生资质查询
+            </block>
+            <block wx:if="{{istrue==2?true:false}}">
+                客观有效的正畸医生选择方法
+            </block>
+
+        </view>
+        <view class='author-btn'>
+            <block wx:if="{{istrue==1?true:false}}">
+                <button class='author-btn1' open-type='getUserInfo'
+                        bindgetuserinfo="getUserInfo">微信授权登录 (1/2)
+                </button>
+            </block>
+            <block wx:if="{{istrue==2?true:false}}">
+                <button class='author-btn1' open-type='getPhoneNumber'
+                        bindgetphonenumber="bindgetphonenumber">微信一键登录 (2/2)
+                </button>
+            </block>
+        </view>
+
+    </view>
+    <view class='weui_back' hidden='{{isShow?true:false}}'></view>
+    <scroll-view class='weui_xy_content' scroll-y="true"
+                 hidden='{{isShow?true:false}}'>
+        <image src='../../img/21.png' class='weui_xy_content_close'
+               bindtap='hideWindow'></image>
+        <view class='weui_xy_content_title'>矮芽用户协议</view>
+        <text class='weui_xy_content_content'></text>
+    </scroll-view>
+</view>
+
+<view class='weui_bottom'>
+    <view class='weui_bottom_l'>注册和登录代表您已同意</view>
+    <view class='weui_bottom_r' bindtap='showXy'>矮芽用户协议</view>
+</view>
