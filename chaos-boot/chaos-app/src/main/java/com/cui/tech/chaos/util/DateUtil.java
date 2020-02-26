@@ -3,17 +3,8 @@ package com.cui.tech.chaos.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-/**
- * 时间处理工具类
- *
- * @author xiaoshiyilang
- * @date 2018/11/13
- */
 public class DateUtil {
 
     public static String FORMAT_SHORT = "yyyy-MM-dd";
@@ -158,7 +149,7 @@ public class DateUtil {
     public static String format(Date date, String pattern) {
         String returnValue = "";
         if (date != null) {
-            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.CHINESE);
             returnValue = df.format(date);
         }
         return (returnValue);
