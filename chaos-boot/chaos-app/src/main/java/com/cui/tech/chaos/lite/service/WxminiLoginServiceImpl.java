@@ -1,7 +1,6 @@
 package com.cui.tech.chaos.lite.service;
 
-import com.cui.tech.chaos.lite.JWTUtil;
-import com.cui.tech.chaos.lite.RedisUtil;
+import com.cui.tech.chaos.lite.helper.RedisHelper;
 import com.cui.tech.chaos.model.Constants;
 import com.cui.tech.chaos.model.login.LoginDto;
 import com.cui.tech.chaos.model.login.WxMiniLoginDto;
@@ -12,7 +11,7 @@ import org.springframework.util.StringUtils;
 public abstract class WxminiLoginServiceImpl implements ILoginService {
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisHelper redisHelper;
 
     public abstract WxMiniLoginUser getUserInfo(WxMiniLoginDto loginDto);
 
@@ -32,7 +31,7 @@ public abstract class WxminiLoginServiceImpl implements ILoginService {
             afterLogin(user);
         }
         user.setToken(wxMiniLoginDto.getToken());
-        redisUtil.hset(Constants.WXMINI_USER, user.getToken(), user.getMu(), 1 * 24 * 60 * 60);
+        redisHelper.hset(Constants.WXMINI_USER, user.getToken(), user.getMu(), 1 * 24 * 60 * 60);
         return user;
     }
 
@@ -45,12 +44,12 @@ public abstract class WxminiLoginServiceImpl implements ILoginService {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        return (String) redisUtil.hget(Constants.WXMINI_USER, token);
+        return (String) redisHelper.hget(Constants.WXMINI_USER, token);
     }
 
     @Override
     public boolean doLogout(String token) {
-        redisUtil.hdel(Constants.WXMINI_USER, token);
+        redisHelper.hdel(Constants.WXMINI_USER, token);
         return true;
     }
 

@@ -1,4 +1,4 @@
-package com.cui.tech.chaos.lite;
+package com.cui.tech.chaos.lite.helper;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -21,7 +21,7 @@ import java.util.Map;
  * @date 2020/1/8 18:41
  */
 @Component
-public class JWTUtil {
+public class JWTHelper {
     public String createToken(String user_mu, String username) {
         String secret = "secret";// token 密钥
         Algorithm algorithm = Algorithm.HMAC256("secret");

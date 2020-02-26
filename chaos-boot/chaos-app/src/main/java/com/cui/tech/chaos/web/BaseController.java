@@ -1,14 +1,13 @@
 package com.cui.tech.chaos.web;
 
 
-import com.cui.tech.chaos.lite.JWTUtil;
-import com.cui.tech.chaos.lite.RedisUtil;
+import com.cui.tech.chaos.lite.helper.JWTHelper;
+import com.cui.tech.chaos.lite.helper.RedisHelper;
 import com.cui.tech.chaos.model.Constants;
 import com.cui.tech.chaos.model.login.JwtData;
 import com.cui.tech.chaos.model.result.PageResult;
 import com.cui.tech.chaos.model.page.PageList;
 import com.cui.tech.chaos.model.result.DataResult;
-import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -25,9 +24,13 @@ import java.util.stream.Collectors;
  */
 public abstract class BaseController<T> {
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisHelper redisHelper;
     @Autowired
-    private JWTUtil jwtUtil;
+    private JWTHelper jwtHelper;
+
+    public String getToken(HttpServletRequest request) {
+        return request.getHeader("token");
+    }
 
     public String getLoginMU(HttpServletRequest request, String end) {
         String token = request.getHeader("token");
@@ -37,11 +40,11 @@ public abstract class BaseController<T> {
         }
         switch (end) {
             case Constants.MANAGE_END:
-                JwtData jwtData = jwtUtil.getJwtData(token);
+                JwtData jwtData = jwtHelper.getJwtData(token);
                 login_mu = jwtData.getUser_mu();
                 break;
             case Constants.WXMINI_END:
-                login_mu = (String) redisUtil.hget(Constants.WXMINI_USER, token);
+                login_mu = (String) redisHelper.hget(Constants.WXMINI_USER, token);
                 break;
         }
         return login_mu;

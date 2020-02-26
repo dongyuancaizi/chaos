@@ -1,4 +1,4 @@
-package com.cui.tech.chaos.lite;
+package com.cui.tech.chaos.lite.helper;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cui.tech.chaos.model.address.GaoDeAddress;
@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
  * @date 2020/2/15 15:52
  */
 @Component
-public class GeoUtils {
+public class GeoHelper {
     @Autowired
     private RestTemplate restTemplate;
 

@@ -19,6 +19,7 @@ public class DateUtil {
     public static String FORMAT_SHORT = "yyyy-MM-dd";
     public static String FORMAT_MM = "yyyy-MM-dd HH:mm";
     public static String FORMAT_LONG = "yyyy-MM-dd HH:mm:ss";
+    public static String FORMAT_WEEK_LONG = "yyyy-MM-dd EEE HH:mm:ss";
     public static String FORMAT_FULL = "yyyy-MM-dd HH:mm:ss.S";
     public static String FORMAT_SHORT_CN = "yyyy年MM月dd";
     public static String FORMAT_LONG_CN = "yyyy年MM月dd日  HH时mm分ss秒";
@@ -27,6 +28,11 @@ public class DateUtil {
     public static String FORMAT_DATE_LONG = "yyyyMMdd";
     public static String START_TIME = " 00:00:00";
     public static String END_TIME = " 23:59:59";
+
+    public static void main(String[] args) {
+        String s = DateUtil.format(new Date(), DateUtil.FORMAT_WEEK_LONG);
+        System.out.println(s);
+    }
 
     /**
      * 查询当前月的天数
@@ -48,12 +54,9 @@ public class DateUtil {
      * @throws ParseException
      */
     public static Date getYesterdayStartTime(Date date) {
-
         String str = parseDate(date, FORMAT_SHORT);
-
         Date parse = parse(str + START_TIME);
         Date yesterDay = addDay(parse, -1);
-
         return yesterDay;
     }
 
@@ -65,10 +68,8 @@ public class DateUtil {
      */
     public static Date getYesterdayEndTime(Date date) {
         String str = parseDate(date, FORMAT_SHORT);
-
         Date parse = parse(str + END_TIME);
         Date yesterDay = addDay(parse, -1);
-
         return yesterDay;
     }
 

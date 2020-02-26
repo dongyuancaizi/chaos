@@ -3,15 +3,9 @@ package com.cui.tech.chaos.lite.interceptor;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.cui.tech.chaos.annotation.ManageLoginToken;
 import com.cui.tech.chaos.annotation.WxminiLoginToken;
-import com.cui.tech.chaos.lite.JWTUtil;
+import com.cui.tech.chaos.lite.helper.JWTHelper;
 import com.cui.tech.chaos.lite.exception.BusinessException;
 import com.cui.tech.chaos.lite.service.ILoginService;
 import com.cui.tech.chaos.model.login.JwtData;
@@ -29,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.util.Date;
-import java.util.Map;
 
 @Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
@@ -38,7 +31,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Reference(group = "wx")
     ILoginService wxLoginService;
     @Autowired
-    private JWTUtil jwtUtil;
+    private JWTHelper jwtHelper;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
@@ -82,7 +75,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (token == null) {
             throw new BusinessException(ResultEnum.LOGIN_AGAIN, "无token，请重新登录");
         }
-        JwtData jwtData = jwtUtil.getJwtData(token);
+        JwtData jwtData = jwtHelper.getJwtData(token);
         if (jwtData.getUser_mu() == null) {
             throw new BusinessException(ResultEnum.LOGIN_AGAIN, "无效token，请重新登录");
         }

@@ -1,4 +1,4 @@
-package com.cui.tech.chaos.lite;
+package com.cui.tech.chaos.lite.helper;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
  * @author J.C
  * @date 2020/2/21 16:35
  */
-public class BaiduAddressUtils {
+public class BaiduAddressHelper {
     @Autowired
     private RestTemplate restTemplate;
 

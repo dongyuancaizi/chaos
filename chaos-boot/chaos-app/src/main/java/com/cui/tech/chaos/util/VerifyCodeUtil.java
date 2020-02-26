@@ -1,0 +1,32 @@
+package com.cui.tech.chaos.util;
+
+/**
+ * @author J.C
+ * @date 2020/2/25 14:38
+ */
+public class VerifyCodeUtil {
+    /**
+     * 创建指定数量的随机字符串 * @param isNumber 是否是数字 * @param length * @return
+     */
+    public static String createRandom(boolean isNumber, int length) {
+        String resultStr = "";
+        String codeContent = isNumber ? "1234567890" : "1234567890abcdefghijkmnpqrstuvwxyz";
+        boolean flag = true;
+        do {
+            int count = 0;
+            for (int i = 0; i < length; i++) {
+                double randomCode = Math.random() * codeContent.length();
+                int code = (int) Math.floor(randomCode);
+                char c = codeContent.charAt(code);
+                if (('0' <= c) && (c <= '9')) {
+                    count++;
+                }
+                resultStr += codeContent.charAt(code);
+            }
+            if (count >= 2) {
+                flag = false;
+            }
+        } while (flag);
+        return resultStr;
+    }
+}

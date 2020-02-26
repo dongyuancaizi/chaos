@@ -1,4 +1,4 @@
-package com.cui.tech.chaos.lite;
+package com.cui.tech.chaos.lite.helper;
 
 import com.cui.tech.chaos.model.RedisStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ import java.util.concurrent.TimeUnit;
  *  @author yinxp@dist.com.cn
  */
 @Component
-public class RedisUtil {
+public class RedisHelper {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    public RedisUtil(RedisTemplate<String, Object> redisTemplate) {
+    public RedisHelper(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

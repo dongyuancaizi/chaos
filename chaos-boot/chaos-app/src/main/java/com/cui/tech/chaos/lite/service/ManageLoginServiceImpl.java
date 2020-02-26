@@ -1,9 +1,8 @@
 package com.cui.tech.chaos.lite.service;
 
-import com.cui.tech.chaos.lite.JWTUtil;
-import com.cui.tech.chaos.lite.RedisUtil;
+import com.cui.tech.chaos.lite.helper.JWTHelper;
+import com.cui.tech.chaos.lite.helper.RedisHelper;
 import com.cui.tech.chaos.model.Constants;
-import com.cui.tech.chaos.model.login.JwtData;
 import com.cui.tech.chaos.model.login.LoginDto;
 import com.cui.tech.chaos.model.login.ManageLoginDto;
 import com.cui.tech.chaos.model.login.ManageLoginUser;
@@ -12,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class ManageLoginServiceImpl implements ILoginService {
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisHelper redisHelper;
 
     @Autowired
-    private JWTUtil jwtUtil;
+    private JWTHelper jwtHelper;
 
     public abstract ManageLoginUser getUserInfo(ManageLoginDto loginDto);
 
@@ -31,31 +30,31 @@ public abstract class ManageLoginServiceImpl implements ILoginService {
         if (user == null) {
             return null;
         }
-        String token = jwtUtil.createToken(user.getMu(), user.getUsername());
+        String token = jwtHelper.createToken(user.getMu(), user.getUsername());
         user.setToken(token);
-        redisUtil.hset(Constants.MANAGE_USER, user.getMu(), user, 30 * 24 * 60 * 60);
+        redisHelper.hset(Constants.MANAGE_USER, user.getMu(), user, 30 * 24 * 60 * 60);
         return user;
     }
 
     @Override
     public String getInfoInServer(String mu) {
-        ManageLoginUser user = (ManageLoginUser) redisUtil.hget(Constants.MANAGE_USER, mu);
+        ManageLoginUser user = (ManageLoginUser) redisHelper.hget(Constants.MANAGE_USER, mu);
         if (user == null) return null;
         return user.getMu();
     }
 
     @Override
     public String refreshToken(String mu) {
-        ManageLoginUser user = (ManageLoginUser) redisUtil.hget(Constants.MANAGE_USER, mu);
+        ManageLoginUser user = (ManageLoginUser) redisHelper.hget(Constants.MANAGE_USER, mu);
         if (user == null) {
             return null;
         }
-        return jwtUtil.createToken(user.getMu(), user.getUsername());
+        return jwtHelper.createToken(user.getMu(), user.getUsername());
     }
 
     @Override
     public boolean doLogout(String mu) {
-        redisUtil.hdel(Constants.MANAGE_USER, mu);
+        redisHelper.hdel(Constants.MANAGE_USER, mu);
         return true;
     }
 
