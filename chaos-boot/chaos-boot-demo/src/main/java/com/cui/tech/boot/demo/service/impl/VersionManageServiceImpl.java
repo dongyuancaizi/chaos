@@ -6,17 +6,16 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cui.tech.boot.demo.api.data.VersionData;
-import com.cui.tech.boot.demo.api.data.VersionUpdateData;
 import com.cui.tech.boot.demo.api.entity.Version;
 import com.cui.tech.boot.demo.api.service.IVersionManageService;
 import com.cui.tech.boot.demo.service.mapper.VersionManageMapper;
-import com.cui.tech.chaos.model.MU;
-import com.cui.tech.chaos.model.PageList;
-import com.cui.tech.chaos.model.PageQueryDto;
-import com.cui.tech.chaos.model.Table;
+import com.cui.tech.chaos.model.db.MU;
+import com.cui.tech.chaos.model.db.Table;
+import com.cui.tech.chaos.model.db.UpdateData;
+import com.cui.tech.chaos.model.page.PageList;
+import com.cui.tech.chaos.model.page.PageQueryDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -49,9 +48,9 @@ public class VersionManageServiceImpl extends ServiceImpl<VersionManageMapper, V
     }
 
     @Override
-    public boolean updateModelByMU(VersionUpdateData data) {
+    public boolean updateModelByMU(UpdateData<VersionData> data) {
         Version entity = new Version();
-        BeanUtils.copyProperties(data, entity);
+        BeanUtils.copyProperties(data.getData(), entity);
         return update(entity,
                 new UpdateWrapper<Version>()
                         .eq(Table.MU, data.getMu())

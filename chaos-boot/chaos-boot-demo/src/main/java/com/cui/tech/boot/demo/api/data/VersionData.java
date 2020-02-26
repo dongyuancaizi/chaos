@@ -1,12 +1,13 @@
 package com.cui.tech.boot.demo.api.data;
 
+import com.cui.tech.chaos.model.db.DATA;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
 @ApiModel(value = "VersionData", description = "")
-public class VersionData {
+public class VersionData extends DATA {
     /**
      * 版本号
      */

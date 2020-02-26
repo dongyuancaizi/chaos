@@ -18,7 +18,7 @@ public class Result extends DTO {
     /**
      * 响应消息
      */
-    @ApiModelProperty(value = "响应消息")
+    @ApiModelProperty(value = "响应消息", example = "ok")
     private String msg;
 
     public Result() {

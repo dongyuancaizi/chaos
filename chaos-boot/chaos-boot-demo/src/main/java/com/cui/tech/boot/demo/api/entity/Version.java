@@ -2,7 +2,7 @@ package com.cui.tech.boot.demo.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cui.tech.chaos.model.MuModel;
+import com.cui.tech.chaos.model.db.MuModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

@@ -1,4 +1,4 @@
-package com.cui.tech.chaos.lite.service;
+package com.cui.tech.chaos.lite.helper;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;

@@ -2,11 +2,11 @@ package com.cui.tech.boot.demo.api.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cui.tech.boot.demo.api.data.VersionData;
-import com.cui.tech.boot.demo.api.data.VersionUpdateData;
 import com.cui.tech.boot.demo.api.entity.Version;
-import com.cui.tech.chaos.model.MU;
-import com.cui.tech.chaos.model.PageList;
-import com.cui.tech.chaos.model.PageQueryDto;
+import com.cui.tech.chaos.model.db.MU;
+import com.cui.tech.chaos.model.db.UpdateData;
+import com.cui.tech.chaos.model.page.PageList;
+import com.cui.tech.chaos.model.page.PageQueryDto;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public interface IVersionManageService extends IService<Version> {
 
     boolean deleteModel(MU data);
 
-    boolean updateModelByMU(VersionUpdateData data);
+    boolean updateModelByMU(UpdateData<VersionData> data);
 
     Version selectByMU(MU data);
 

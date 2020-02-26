@@ -1,10 +1,16 @@
 package com.xxl.codegenerator.admin.helper;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.FileOutConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import org.apache.ibatis.annotations.Case;
 
 import java.util.Scanner;
 
@@ -45,4 +51,42 @@ public class CodeHelper {
         strategy.setTablePrefix(pc.getModuleName() + "_");
         return strategy;
     }
+
+    public static DataSourceConfig initDataSource(AutoGenerator mpg) {
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl("jdbc:mysql://gz-cdb-gahtejkb.sql.tencentcdb.com:60688/iya?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        //dsc.setUrl("jdbc:mysql://47.111.6.183:3306/hey?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        // dsc.setSchemaName("public");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setUsername("root");
+        dsc.setPassword("iya123456");
+        //dsc.setUsername("root");
+        //dsc.setPassword("panpan");
+        mpg.setDataSource(dsc);
+        return dsc;
+    }
+
+    public static FileOutConfig FileOutConfig(String templatePath, String type) {
+        String prefix;
+        String suffix;
+        switch (type) {
+            case "mapper":
+                prefix="/src/main/resources/mapper/";
+                suffix= "Mapper" + StringPool.DOT_XML;
+                break;
+            case "pom":
+                prefix="/src/main/resources/mapper/";
+                suffix= "Mapper" + StringPool.DOT_XML;
+                break;
+        }
+        return new FileOutConfig(templatePath, filePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + filePath;
+            }
+        };
+    }
+
+
 }

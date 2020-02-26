@@ -18,6 +18,7 @@ public class DateUtil {
 
     public static String FORMAT_SHORT = "yyyy-MM-dd";
     public static String FORMAT_MM = "yyyy-MM-dd HH:mm";
+    public static String FORMAT_WEEK_MM = "yyyy-MM-dd EEE HH:mm";
     public static String FORMAT_LONG = "yyyy-MM-dd HH:mm:ss";
     public static String FORMAT_WEEK_LONG = "yyyy-MM-dd EEE HH:mm:ss";
     public static String FORMAT_FULL = "yyyy-MM-dd HH:mm:ss.S";

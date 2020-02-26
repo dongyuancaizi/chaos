@@ -1,14 +1,12 @@
 package com.xxl.codegenerator.admin.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import com.sun.tracing.dtrace.ModuleName;
 import com.xxl.codegenerator.admin.core.CodeGeneratorTool;
 import com.xxl.codegenerator.admin.core.model.ClassInfo;
 import com.xxl.codegenerator.admin.model.ReturnT;
@@ -107,10 +105,10 @@ public class IndexController {
             Map<String, String> result = new HashMap<String, String>();
 
             result.put("controller_code", freemarkerTool.processString("xxl-code-generator/controller.ftl", params));
-            result.put("service_code", freemarkerTool.processString("xxl-code-generator/service.ftl", params));
+            result.put("service_code", freemarkerTool.processString("xxl-code-generator/IService.ftl", params));
             result.put("service_impl_code", freemarkerTool.processString("xxl-code-generator/service_impl.ftl", params));
 
-            result.put("dao_code", freemarkerTool.processString("xxl-code-generator/dao.ftl", params));
+            result.put("dao_code", freemarkerTool.processString("xxl-code-generator/mapper.ftl", params));
             result.put("mybatis_code", freemarkerTool.processString("xxl-code-generator/mybatis.ftl", params));
 
             result.put("model_code", freemarkerTool.processString("xxl-code-generator/model.ftl", params));
@@ -201,12 +199,12 @@ public class IndexController {
 
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
-        templateConfig.setEntity("templates/xxl-code-generator/model");
+        templateConfig.setEntity("templates/code/model");
         templateConfig.setXml(null);
-        templateConfig.setMapper("templates/xxl-code-generator/dao");
-        templateConfig.setService("templates/xxl-code-generator/service");
-        templateConfig.setServiceImpl("templates/xxl-code-generator/service_impl");
-        templateConfig.setController("templates/xxl-code-generator/controller");
+        templateConfig.setMapper("templates/code/dao");
+        templateConfig.setService("templates/code/service");
+        templateConfig.setServiceImpl("templates/code/service_impl");
+        templateConfig.setController("templates/code/controller");
 
         mpg.setTemplate(templateConfig);
 
@@ -236,7 +234,7 @@ public class IndexController {
     private void initData(final String projectPath, final String pc_model, List<FileOutConfig> focList) {
         // 自定义配置会被优先输出
         // 如果模板引擎是 freemarker
-        String mybatisTemplatePath = "templates/xxl-code-generator/mybatis.ftl";
+        String mybatisTemplatePath = "templates/code/src/main/resources/mapper/mybatis.ftl";
         focList.add(new FileOutConfig(mybatisTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -246,7 +244,7 @@ public class IndexController {
             }
         });
 
-        String mtdTemplatePath = "templates/xxl-code-generator/model_to_dto.ftl";
+        String mtdTemplatePath = "templates/code/model_to_dto.ftl";
         focList.add(new FileOutConfig(mtdTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -255,7 +253,7 @@ public class IndexController {
                         + "/service/impl/" + tableInfo.getEntityName() + "ModelToDto" + StringPool.DOT_JAVA;
             }
         });
-        String dtmTemplatePath = "templates/xxl-code-generator/dto_to_model.ftl";
+        String dtmTemplatePath = "templates/code/src/main/java/api/data/dto_to_model.ftl";
         focList.add(new FileOutConfig(dtmTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -265,7 +263,7 @@ public class IndexController {
             }
         });
 
-        String cdTemplatePath = "templates/xxl-code-generator/create_data.ftl";
+        String cdTemplatePath = "templates/code/src/main/java/api/data/data.ftl";
         focList.add(new FileOutConfig(cdTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -275,7 +273,7 @@ public class IndexController {
             }
         });
 
-        String udTemplatePath = "templates/xxl-code-generator/update_data.ftl";
+        String udTemplatePath = "templates/code/update_data.ftl";
         focList.add(new FileOutConfig(udTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -285,7 +283,7 @@ public class IndexController {
             }
         });
 
-        String qTemplatePath = "templates/xxl-code-generator/query_data.ftl";
+        String qTemplatePath = "templates/code/query_data.ftl";
         focList.add(new FileOutConfig(qTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -295,7 +293,7 @@ public class IndexController {
             }
         });
 
-        String lqTemplatePath = "templates/xxl-code-generator/list_query_data.ftl";
+        String lqTemplatePath = "templates/code/src/main/java/api/data/list_query_data.ftl";
         focList.add(new FileOutConfig(lqTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -305,7 +303,7 @@ public class IndexController {
             }
         });
 
-        String rTemplatePath = "templates/xxl-code-generator/result.ftl";
+        String rTemplatePath = "templates/code/result.ftl";
         focList.add(new FileOutConfig(rTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -315,7 +313,7 @@ public class IndexController {
             }
         });
 
-        String pomTemplatePath = "templates/xxl-code-generator/pom.xml.ftl";
+        String pomTemplatePath = "templates/code/pom.xml.ftl";
         focList.add(new FileOutConfig(pomTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -324,7 +322,7 @@ public class IndexController {
             }
         });
 
-        String applicationTemplatePath = "templates/xxl-code-generator/application.yml.ftl";
+        String applicationTemplatePath = "templates/code/src/main/resources/application.yml.ftl";
         focList.add(new FileOutConfig(applicationTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -333,7 +331,7 @@ public class IndexController {
             }
         });
 
-        String applicationbaseTemplatePath = "templates/xxl-code-generator/application-base.yml.ftl";
+        String applicationbaseTemplatePath = "templates/code/src/main/resources/application-base.yml.ftl";
         focList.add(new FileOutConfig(applicationbaseTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -342,7 +340,7 @@ public class IndexController {
             }
         });
 
-        String applicationdevTemplatePath = "templates/xxl-code-generator/application-dev.yml.ftl";
+        String applicationdevTemplatePath = "templates/code/src/main/resources/application-dev.yml.ftl";
         focList.add(new FileOutConfig(applicationdevTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -351,7 +349,7 @@ public class IndexController {
             }
         });
 
-        String appTemplatePath = "templates/xxl-code-generator/Application.ftl";
+        String appTemplatePath = "templates/code/src/main/Application.ftl";
         focList.add(new FileOutConfig(appTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {

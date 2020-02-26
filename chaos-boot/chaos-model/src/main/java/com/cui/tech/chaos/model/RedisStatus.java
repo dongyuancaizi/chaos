@@ -3,15 +3,14 @@ package com.cui.tech.chaos.model;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract  class RedisStatus {
+public abstract class RedisStatus {
 
     /**
      * 过期时间相关枚举
      */
-    public static enum ExpireEnum{
+    public static enum ExpireEnum {
         //未读消息的有效期为30天
-        UNREAD_MSG(30L, TimeUnit.DAYS)
-        ;
+        UNREAD_MSG(30L, TimeUnit.DAYS);
 
         /**
          * 过期时间

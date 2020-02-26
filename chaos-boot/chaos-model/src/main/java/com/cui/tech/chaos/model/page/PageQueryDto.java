@@ -1,13 +1,14 @@
 package com.cui.tech.chaos.model.page;
 
 import com.cui.tech.chaos.model.Constants;
+import com.cui.tech.chaos.model.DTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
 @ApiModel(value = "分页对象", description = "")
-public class PageQueryDto<T> {
+public class PageQueryDto<T> extends DTO {
     @ApiModelProperty(value = "第几页", example = "1")
     private Integer pageNum = Constants.DEFAULT_PAGE;
     @ApiModelProperty(value = "总条数", example = "10")

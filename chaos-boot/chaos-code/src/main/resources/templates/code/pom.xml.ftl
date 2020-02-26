@@ -20,22 +20,11 @@
             <groupId>com.cui.tech</groupId>
             <artifactId>chaos-spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.cui.tech</groupId>
-            <artifactId>${package.ModuleName}-api</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 

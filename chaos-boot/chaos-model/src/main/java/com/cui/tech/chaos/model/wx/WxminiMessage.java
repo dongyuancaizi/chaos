@@ -10,8 +10,12 @@ import java.util.Map;
  */
 @Data
 public class WxminiMessage {
-    private String touser;//用户openid
-    private String template_id;//订阅消息模版id
-    private String page = "pages/index/index";//默认跳到小程序首页
-    private Map<String, WxminiTemplateData> data;//推送文字
+    //用户openid
+    private String touser;
+    //订阅消息模版id
+    private String template_id;
+    //默认跳到小程序首页
+    private String page = "pages/index/index";
+    //推送文字
+    private Map<String, WxminiTemplateData> data;
 }
