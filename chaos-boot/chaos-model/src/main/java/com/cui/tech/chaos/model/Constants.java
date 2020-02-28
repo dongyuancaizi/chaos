@@ -1,11 +1,17 @@
 package com.cui.tech.chaos.model;
 
 public interface Constants {
-    String MANAGE_USER = "manage_user";
-    String WXMINI_USER = "wxmini_user";
+    String API = "api";
+    String END = "end";
 
-    String MANAGE_END = "manage_end";
-    String WXMINI_END = "wxmini_end";
+    String MANAGE = "manage";
+    String WXMINI = "wxmini";
+
+    String MANAGE_USER = MANAGE + "_user";
+    String WXMINI_USER = WXMINI + "_user";
+
+    String MANAGE_END = MANAGE + "_" + END;
+    String WXMINI_END = WXMINI + "_" + END;
     String IOS_END = "ios_end";
     String ANDROID_END = "android_end";
     String H5_END = "h5_end";
