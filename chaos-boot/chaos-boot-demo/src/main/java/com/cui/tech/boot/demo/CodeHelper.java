@@ -75,10 +75,10 @@ public class CodeHelper {
 
     public static DataSourceConfig initDataSource(AutoGenerator mpg) {
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://gz-cdb-gahtejkb.sql.tencentcdb.com:60688/iya?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://47.107.250.191/okya?useUnicode=true&useSSL=false&characterEncoding=utf8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("iya123456");
+        dsc.setUsername("sikeonline");
+        dsc.setPassword("SiKe!2#4%6");
         mpg.setDataSource(dsc);
         return dsc;
     }

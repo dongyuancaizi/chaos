@@ -8,7 +8,7 @@ app:
       appkey: 88888888
       smsSign:
 server:
-  port: 28089
+  port: 8089
 mybatis-plus:
   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 logging:
