@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2019/11/7 17:30
  */
 @Data
-public class MU extends DTO {
+public class MU extends ID {
     private String mu;
 
     public MU() {
