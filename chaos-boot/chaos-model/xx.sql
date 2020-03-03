@@ -1,6 +1,6 @@
 CREATE TABLE `t_` (
   `id` int(11) NOT NULL,
-  `m_unique` varchar(64) NOT NULL,
+  `mu` varchar(64) NOT NULL,
   `create_time` datetime NOT NULL,
   `modify_time` datetime NOT NULL,
   `is_delete` tinyint(2) NOT NULL DEFAULT '0',
