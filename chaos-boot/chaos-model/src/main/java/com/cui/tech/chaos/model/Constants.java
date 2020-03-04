@@ -16,7 +16,7 @@ public interface Constants {
     String ANDROID_END = "android_end";
     String H5_END = "h5_end";
 
-    int DEFAULT_PAGE_SIZE = 10;
+    int DEFAULT_PAGE_SIZE = 15;
     int DEFAULT_PAGE = 1;
 
     int TRUE = 1;
