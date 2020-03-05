@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  * @author Jian.cui
  * @date 2019/12/7 17:24
  */
-@Configuration
+/*@Configuration
 public class DruidConfiguration {
 
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -24,10 +24,10 @@ public class DruidConfiguration {
         return new DruidDataSource();
     }
 
-    /**
+    *//**
      * druid 数据源状态监控
      * @return
-     */
+     *//*
     @Bean
     public ServletRegistrationBean statViewServlet(){
         //创建servlet注册实体
@@ -44,10 +44,10 @@ public class DruidConfiguration {
         return servletRegistrationBean;
     }
 
-    /**
+    *//**
      * druid 过滤器
      * @return
-     */
+     *//*
     @Bean
     public FilterRegistrationBean statFilter(){
         //创建过滤器
@@ -58,4 +58,4 @@ public class DruidConfiguration {
         filterRegistrationBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
-}
+}*/
