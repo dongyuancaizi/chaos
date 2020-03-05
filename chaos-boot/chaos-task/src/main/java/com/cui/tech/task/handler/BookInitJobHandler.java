@@ -10,6 +10,7 @@ import com.xxl.job.core.log.XxlJobLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 @JobHandler(value = "bookInitJobHandler")
 @Component
 public class BookInitJobHandler extends IJobHandler {
@@ -22,7 +23,7 @@ public class BookInitJobHandler extends IJobHandler {
     public ReturnT<String> execute(String param) throws Exception {
         XxlJobLogger.log("XXL-JOB, Hello BookInitJobHandler.");
         bookTaskManager.execute();
-        return SUCCESS;
+        return ReturnT.SUCCESS;
     }
 
 }

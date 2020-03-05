@@ -67,6 +67,7 @@ public class VersionManageServiceImpl extends ServiceImpl<VersionManageMapper, V
     public List<Version> selectByData(VersionData data) {
         QueryWrapper<Version> query = new QueryWrapper<Version>();
         //query.eq(!data.getPassword().isEmpty(),"password", data.getPassword());
+
         query.orderByDesc(Table.ID);
         return list(query);
     }

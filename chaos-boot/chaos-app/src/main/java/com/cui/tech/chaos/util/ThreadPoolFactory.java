@@ -1,6 +1,7 @@
 package com.cui.tech.chaos.util;
 
-import com.cui.tech.chaos.model.constant.ThreadPoolTypeEnum;
+
+import com.cui.tech.chaos.constant.ThreadPoolTypeEnum;
 
 import java.util.concurrent.*;
 
