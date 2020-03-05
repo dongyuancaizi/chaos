@@ -27,5 +27,29 @@ public class AsyncConfig {
         return executor;
     }
 
+
+
+    /**
+     * io密集型的线程池
+     *
+     * @return
+     */
+    @ConditionalOnMissingBean
+    @Bean(name = "ioIntensiveThreadPool")
+    public Executor ioIntensiveThreadPool() {
+        return ThreadPoolFactory.instance(ThreadPoolTypeEnum.IO_INTENSIVE);
+    }
+
+    /**
+     * cpu密集型的线程池
+     *
+     * @return
+     */
+    @ConditionalOnMissingBean
+    @Bean(name = "cpuIntensiveThreadPool")
+    public Executor cpuIntensiveThreadPool() {
+        return ThreadPoolFactory.instance(ThreadPoolTypeEnum.CPU_INTENSIVE);
+    }
+
 }
 
